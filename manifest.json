@@ -1,6 +1,6 @@
 {
   "id": "org.ekstep.questionunit.mtf",
-  "ver": "1.0",
+  "ver": "1.1",
   "author": "Jagadish",
   "title": "Add question",
   "description": "",
@@ -77,7 +77,7 @@
       },
       {
         "type": "js",
-        "src": "renderer/js/dragula.min.js"
+        "src": "renderer/js/jquery-ui.min.js"
       },
       {
         "type": "js",
