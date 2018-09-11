@@ -12,12 +12,13 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
   _render: true,
   _selectedAnswers: [],
   _dragulaContainers: [],
+  _drake: undefined,
   _constant: {
     horizontal: "Horizontal",
-    vertial : "Vertical"
+    vertial: "Vertical"
   },
   setQuestionTemplate: function () {
-    MTFController.initTemplate(this);// eslint-disable-line no-undef
+    MTFController.initTemplate(this); // eslint-disable-line no-undef
   },
 
   preQuestionShow: function (event) {
@@ -25,13 +26,13 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
     var inst = this;
 
     // If the any of the lhs or rhs had a image then the layout is vertical
-    _.each(this._question.data.option.optionsLHS, function(lhs){
-      if(lhs.image) {
+    _.each(this._question.data.option.optionsLHS, function (lhs) {
+      if (lhs.image) {
         inst._question.config.layout = "Vertical";
       }
     })
-    _.each(this._question.data.option.optionsRHS, function(rhs){
-      if(rhs.image) {
+    _.each(this._question.data.option.optionsRHS, function (rhs) {
+      if (rhs.image) {
         inst._question.config.layout = "Vertical";
       }
     })
@@ -42,7 +43,7 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
   postQuestionShow: function (event) {
     var instance = this;
   },
-  evaluateQuestion: function(event){
+  evaluateQuestion: function (event) {
     var instance = this;
     var callback = event.target;
     var correctAnswer = true;
@@ -50,29 +51,29 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
     var telemetryValues = [];
     var totalLHS = instance._question.data.option.optionsLHS.length;
     instance._selectedRHS = [];
-    $('.rhs-block').each(function(expectedOptionMapIndex, elem){
+    $('.rhs-block').each(function (expectedOptionMapIndex, elem) {
       var telObj = {
-        'LHS':[],
-        'RHS':[]
+        'LHS': [],
+        'RHS': []
       };
       var selectedOptionMapIndex = parseInt($(elem).data('mapindex')) - 1;
       telObj['LHS'][expectedOptionMapIndex] = instance._question.data.option.optionsLHS[expectedOptionMapIndex];
       telObj['RHS'][selectedOptionMapIndex] = instance._question.data.option.optionsRHS[selectedOptionMapIndex];
       telemetryValues.push(telObj);
       instance._selectedRHS.push(instance._question.data.option.optionsRHS[selectedOptionMapIndex]);
-      if(selectedOptionMapIndex == expectedOptionMapIndex){
+      if (selectedOptionMapIndex == expectedOptionMapIndex) {
         correctAnswersCount++;
       } else {
         correctAnswer = false;
       }
     })
     var partialScore
-    if(this._question.config.partial_scoring){
+    if (this._question.config.partial_scoring) {
       partialScore = (correctAnswersCount / totalLHS) * this._question.config.max_score;
-    }else{
+    } else {
       partialScore = 0;
     }
-    
+
     var result = {
       eval: correctAnswer,
       state: {
@@ -92,7 +93,10 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
     EkstepRendererAPI.dispatchEvent('org.ekstep.questionset:saveQuestionState', result.state);
   },
   logTelemetryItemResponse: function (data) {
-    QSTelemetryLogger.logEvent(QSTelemetryLogger.EVENT_TYPES.RESPONSE, {"type": "INPUT", "values": data});
+    QSTelemetryLogger.logEvent(QSTelemetryLogger.EVENT_TYPES.RESPONSE, {
+      "type": "INPUT",
+      "values": data
+    });
   }
 });
 //# sourceURL=questionunitMTFPlugin.js
