@@ -79,7 +79,6 @@ angular.module('mtfApp', ['org.ekstep.question']).controller('mtfQuestionFormCon
       'questionCount': 0
     }
   };
-  $scope.indexPair = 4;
   $scope.questionMedia = {};
   $scope.optionsMedia = {
     'image': [],
@@ -161,7 +160,7 @@ angular.module('mtfApp', ['org.ekstep.question']).controller('mtfQuestionFormCon
       'audio': '',
       'audioName': '',
       'hint': '',
-      'index': $scope.indexPair
+      'index': $scope.mtfFormData.option.optionsLHS.length + 1
     };
     var optionRHS = {
       'text': '',
@@ -169,7 +168,7 @@ angular.module('mtfApp', ['org.ekstep.question']).controller('mtfQuestionFormCon
       'audio': '',
       'audioName': '',
       'hint': '',
-      'mapIndex': $scope.indexPair++
+      'mapIndex': $scope.mtfFormData.option.optionsRHS.length + 1
     };
     if ($scope.mtfFormData.option.optionsLHS.length < 5) {
       $scope.mtfFormData.option.optionsLHS.push(optionLHS);
@@ -224,6 +223,16 @@ angular.module('mtfApp', ['org.ekstep.question']).controller('mtfQuestionFormCon
   $scope.deletePair = function (id) {
     $scope.mtfFormData.option.optionsLHS.splice(id, 1);
     $scope.mtfFormData.option.optionsRHS.splice(id, 1);
+    $scope.updatedMapIndex()
+  }
+
+  $scope.updatedMapIndex = function(){
+    _.each($scope.mtfFormData.option.optionsLHS, function(lhs, id){
+      lhs.index = id+1;
+    })
+    _.each($scope.mtfFormData.option.optionsRHS, function(rhs, id){
+      rhs.mapIndex = id+1;
+    })
   }
 
   /**
