@@ -72,7 +72,9 @@ MTFController.getVerticalLayout = function () {
         <div class="lhs-rhs-block lhs-block">\
             <img class="background-image" src="<%= MTFController.pluginInstance.getAudioIcon("renderer/assets/shape1.png") %>" />\
             <span><%= val.text %></span>\
-            <img onclick="org.ekstep.questionunit.baseComponent.showImageModel(event, \'<%= val.image %>\')" class="option-image" src="<%= val.image %>" />\
+            <% if(val.image){ %> \
+              <img onclick="org.ekstep.questionunit.baseComponent.showImageModel(event, \'<%= MTFController.pluginInstance.getAssetUrl(val.image) %>\')" class="option-image" src="<%= MTFController.pluginInstance.getAssetUrl(val.image) %>" />\
+            <% } %>\
             <% if(val.audio){ %> \
               <img onclick=MTFController.pluginInstance.playAudio({src:"<%= val.audio %>"}) class="audio-image" src="<%= MTFController.pluginInstance.getAudioIcon("renderer/assets/audio3.png") %>" />\
             <% } %>\
@@ -84,7 +86,9 @@ MTFController.getVerticalLayout = function () {
         <div data-mapindex=<%= val.mapIndex %> class="lhs-rhs-block rhs-block">\
         <img class="background-image" src="<%= MTFController.pluginInstance.getAudioIcon("renderer/assets/shape2.png") %>" />\
         <span><%= val.text %></span>\
-        <img onclick="org.ekstep.questionunit.baseComponent.showImageModel(event, \'<%= val.image %>\')" class="option-image" src="<%= val.image %>" />\
+        <% if(val.image){ %> \
+          <img onclick="org.ekstep.questionunit.baseComponent.showImageModel(event, \'<%= MTFController.pluginInstance.getAssetUrl(val.image) %>\')" class="option-image" src="<%= MTFController.pluginInstance.getAssetUrl(val.image) %>" />\
+        <% } %>\
         <% if(val.audio){ %> \
           <img onclick=MTFController.pluginInstance.playAudio({src:"<%= val.audio %>"}) class="audio-image" src="<%= MTFController.pluginInstance.getAudioIcon("renderer/assets/audio3.png") %>" />\
         <% } %>\
