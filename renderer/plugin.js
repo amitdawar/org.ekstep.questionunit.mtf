@@ -42,6 +42,7 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
   },
   postQuestionShow: function (event) {
     var instance = this;
+    QSTelemetryLogger.logEvent(QSTelemetryLogger.EVENT_TYPES.ASSESS); // eslint-disable-line no-undef
   },
   evaluateQuestion: function (event) {
     var instance = this;
@@ -67,11 +68,15 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
         correctAnswer = false;
       }
     })
-    var partialScore
+    var questionScore;
     if (this._question.config.partial_scoring) {
-      partialScore = (correctAnswersCount / totalLHS) * this._question.config.max_score;
+      questionScore = (correctAnswersCount / totalLHS) * this._question.config.max_score;
     } else {
-      partialScore = 0;
+      if ((correctAnswersCount / totalLHS) == 1) {
+        questionScore = this._question.config.max_score;
+      } else {
+        questionScore = 0
+      }
     }
 
     var result = {
@@ -82,7 +87,7 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
           "rhs": instance._selectedRHS
         }
       },
-      score: partialScore,
+      score: questionScore,
       values: telemetryValues,
       noOfCorrectAns: correctAnswersCount,
       totalAns: totalLHS
@@ -91,6 +96,7 @@ org.ekstep.questionunitmtf.RendererPlugin = org.ekstep.contentrenderer.questionU
       callback(result);
     }
     EkstepRendererAPI.dispatchEvent('org.ekstep.questionset:saveQuestionState', result.state);
+    QSTelemetryLogger.logEvent(QSTelemetryLogger.EVENT_TYPES.ASSESSEND, result); // eslint-disable-line no-undef
   },
   logTelemetryItemResponse: function (data) {
     QSTelemetryLogger.logEvent(QSTelemetryLogger.EVENT_TYPES.RESPONSE, {
