@@ -16,7 +16,7 @@
 .mtf-container .mtf-content-container .mtf-header{
     width:100%;
     height:23.33333vh;
-    font-size:3.9vh;
+    font-size:14px;
     line-height:6.7vh;
     top:0;
     left:0;
@@ -109,9 +109,13 @@
 
 /* top to bottom layout implementation */
 .mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container {
-    width:84.5%;
+    width:100%;
     margin:auto;
     height:100%;
+}
+
+.mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container.options-4{
+    margin:0% 10%;
 }
 
 .mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container.options-3{
@@ -125,10 +129,9 @@
 
 .mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container .lhs-rhs-container .lhs-rhs-block{
     height:100%;
-    width:23%;
     float:left;
-    margin-right:1.5%;
     position: relative;
+    width:19.5%;
 }
 
 .mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container .lhs-rhs-container .lhs-rhs-block img.background-image{
@@ -159,7 +162,11 @@
     justify-content: center;
     display: flex;
     align-items: center;
-    font-size: 6.64vh;
+    font-size: 3.64vh;
+    height:83%;
+    padding:2px 5px;
+    word-break: break-word;
+    hyphens: manual;
   }
 
 .mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container .lhs-rhs-container .lhs-rhs-block img.audio-image{
@@ -169,6 +176,10 @@
     opacity: 0.7;
     left:39%;
     cursor: pointer;
+}
+
+.mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container .lhs-rhs-container .rhs-block{
+    cursor: move;
 }
 
 .mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container .lhs-rhs-container .lhs-block img.background-image{
@@ -193,5 +204,4 @@
 
 .mtf-container .mtf-content-container .mtf-options-container .mtf-options-vertical-container .lhs-rhs-container .rhs-block img.option-image{
     bottom:6%;
-    cursor: move;
 }

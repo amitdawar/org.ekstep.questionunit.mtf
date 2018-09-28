@@ -62,7 +62,7 @@
                                                                 maxlength="25" ng-init="focused = false" ng-focus="focused = true;generateTelemetry({type: 'TOUCH', id: 'input', target: {id: 'questionunit-mtf-lhs-answer', ver: '', type: 'input'}})"
                                                                 ng-blur="focused = false" ng-required="!(mtfFormData.option.optionsLHS[$index].text.length||mtfFormData.option.optionsLHS[$index].image.length||mtfFormData.option.optionsLHS[$index].audio.length)"
                                                             />
-                                                            <span class="maxLengthText">{{mtfFormData.option.optionsLHS[$index].text.length}}
+                                                            <span class="MTFmaxLengthText">{{mtfFormData.option.optionsLHS[$index].text.length}}
                                                                 <span class="length-divider">/</span>25</span>
                                                         </div>
                                                     </div>
@@ -109,7 +109,7 @@
                                                                 ng-init="focused = false" ng-focus="focused = true;generateTelemetry({type: 'TOUCH', id: 'input', target: {id: 'questionunit-mtf-rhs-answer', ver: '', type: 'input'}})"
                                                                 id="mtf-optionRHS-input" ng-blur="focused = false" ng-required="!(mtfFormData.option.optionsRHS[$index].text.length||mtfFormData.option.optionsRHS[$index].image.length||mtfFormData.option.optionsRHS[$index].audio.length)"
                                                             />
-                                                            <span class="maxLengthText">{{mtfFormData.option.optionsRHS[$index].text.length}}
+                                                            <span class="MTFmaxLengthText">{{mtfFormData.option.optionsRHS[$index].text.length}}
                                                                 <span class="length-divider">/</span>25</span>
                                                         </div>
                                                     </div>

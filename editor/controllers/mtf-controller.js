@@ -87,7 +87,7 @@ angular.module('mtfApp', ['org.ekstep.question']).controller('mtfQuestionFormCon
   $scope.mtfFormData.media = [];
   $scope.editMedia = [];
   var questionInput = CKEDITOR.replace('mtfQuestion', {// eslint-disable-line no-undef
-    customConfig: ecEditor.resolvePluginResource('org.ekstep.questionunit', '1.1', "editor/ckeditor-config.js"),
+    customConfig: ecEditor.resolvePluginResource('org.ekstep.questionunit', '1.0', "editor/ckeditor-config.js"),
     skin: 'moono-lisa,' + CKEDITOR.basePath + "skins/moono-lisa/",// eslint-disable-line no-undef
     contentsCss: CKEDITOR.basePath + "contents.css"// eslint-disable-line no-undef
   });
